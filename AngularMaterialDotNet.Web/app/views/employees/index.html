@@ -9,26 +9,26 @@
                 <p flex class="md-no-sticky">Name</p>
                 <p flex class="md-no-sticky">Dependents</p>
                 <p flex class="md-no-sticky">Discount</p>
-    <p flex class="md-no-sticky">Paycheck Cost</p>
+                <p flex class="md-no-sticky">Paycheck Cost</p>
                 <p flex class="md-no-sticky">Paycheck Total</p>
                 <p flex class="md-no-sticky">Annual Cost</p>
                 <p flex class="md-no-sticky">Annual Total</p>
-     <p flex class="md-no-sticky"></p>
+                <p flex class="md-no-sticky"></p>
             </div>
         </md-list-item>
 
-        <md-list-item flex class="md-whiteframe-z1"layout="column" style="padding:10px;margin:10px;background-color:lightblue" ng-repeat="employee in employees">
-            <div flex layout="row" style="width:100%"  ng-click="showCalc(employee.employeeId)">
+        <md-list-item flex class="md-whiteframe-z1" layout="column" style="padding:10px;margin:10px;background-color:lightblue" ng-repeat="employee in employees">
+            <div flex layout="row" style="width:100%" ng-click="showCalc(employee.employeeId)">
                 <p flex class="md-no-sticky">{{employee.name}}</p>
                 <p flex class="md-no-sticky">{{employee.numberOfDependents}}</p>
                 <p flex class="md-no-sticky">{{employee.discountPercentage}}%</p>
-      <p flex class="md-no-sticky">${{employee.paycheckCostTotal|number:2}}</p>
+                <p flex class="md-no-sticky">${{employee.paycheckCostTotal|number:2}}</p>
                 <p flex class="md-no-sticky">${{employee.paycheckTotal|number:2}}</p>
                 <p flex class="md-no-sticky">${{employee.annualCostTotal|number:2}}</p>
                 <p flex class="md-no-sticky md-title">${{employee.annualTotal|number:2}}</p>
-      <div flex>
+                <div flex>
                     <md-button aria-label="Delete" class="md-icon-button">
-                        <ng-md-icon icon="delete" style="fill:#23B9A3;" ng-click="deleteEmployee(employee)" ></ng-md-icon>
+                        <ng-md-icon icon="delete" style="fill:#23B9A3;" ng-click="deleteEmployee(employee)"></ng-md-icon>
                     </md-button>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <p>${{employee.annualAmount|number:2}} - ((${{employee.annualCostOfBenefits|number:2}} - {{employee.numberOfDependents}} * $500.00) * {{employee.discountPercentage}}%) = ${{employee.annualTotal|number:2}}</p>
                 <h5>Paycheck Calculation</h5>
                 <p>${{employee.paycheckAmount|number:2}} - ((${{employee.paycheckCostOfBenefits|number:2}} - {{employee.numberOfDependents}} * $500.00) * {{employee.discountPercentage}}%) = ${{employee.paycheckTotal|number:2}}</p>
-  </div>
+            </div>
         </md-list-item>
     </md-list>
     <div layout="row" layout-align="end">
