@@ -1,0 +1,30 @@
+﻿<div layout="column">
+    <md-content layout-padding>
+        <form name="form">
+            <h2>Add Employee</h2>
+            <md-input-container class="md-block">
+                <label>Name</label>
+                <input required name="name" md-maxlength="30" ng-model="employee.name">
+                <div ng-messages="form.name.$error">
+                    <div ng-message="required">required</div>
+                    <div ng-message="md-maxlength">too long</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Number of Dependents</label>
+                <input required name="numberOfDependents" type="number" min="0" max="5" ng-model="employee.numberOfDependents">
+                <div ng-messages="form.numberOfDependents.$error" multiple md-auto-hide="false">
+                    <div ng-message="required">required</div>
+                    <div ng-message="min">no negative dependents</div>
+                    <div ng-message="max">you may only have up to 5 dependents</div>
+                </div>
+            </md-input-container>
+            <div layout="row" layout-align="end">
+                <md-button type="submit" data-ng-click="addEmployee()">Submit</md-button>
+            </div>
+            <div ng-hide="message == ''" ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                {{message}}
+            </div>
+        </form>
+    </md-content>
+</div>

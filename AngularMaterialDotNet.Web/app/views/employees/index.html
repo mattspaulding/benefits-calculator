@@ -1,0 +1,48 @@
+﻿<div>
+    <div layout="row" layout-sm="column" layout-align="center center" ng-show="data.loading">
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <md-list flex>
+        <md-subheader class="md-no-sticky">All Employees</md-subheader>
+        <md-list-item flex style="padding:10px;margin:10px;">
+            <div flex layout="row">
+                <p flex class="md-no-sticky">Name</p>
+                <p flex class="md-no-sticky">Dependents</p>
+                <p flex class="md-no-sticky">Discount</p>
+    <p flex class="md-no-sticky">Paycheck Cost</p>
+                <p flex class="md-no-sticky">Paycheck Total</p>
+                <p flex class="md-no-sticky">Annual Cost</p>
+                <p flex class="md-no-sticky">Annual Total</p>
+     <p flex class="md-no-sticky"></p>
+            </div>
+        </md-list-item>
+
+        <md-list-item flex class="md-whiteframe-z1"layout="column" style="padding:10px;margin:10px;background-color:lightblue" ng-repeat="employee in employees">
+            <div flex layout="row" style="width:100%"  ng-click="showCalc(employee.employeeId)">
+                <p flex class="md-no-sticky">{{employee.name}}</p>
+                <p flex class="md-no-sticky">{{employee.numberOfDependents}}</p>
+                <p flex class="md-no-sticky">{{employee.discountPercentage}}%</p>
+      <p flex class="md-no-sticky">${{employee.paycheckCostTotal|number:2}}</p>
+                <p flex class="md-no-sticky">${{employee.paycheckTotal|number:2}}</p>
+                <p flex class="md-no-sticky">${{employee.annualCostTotal|number:2}}</p>
+                <p flex class="md-no-sticky md-title">${{employee.annualTotal|number:2}}</p>
+      <div flex>
+                    <md-button aria-label="Delete" class="md-icon-button">
+                        <ng-md-icon icon="delete" style="fill:#23B9A3;" ng-click="deleteEmployee(employee)" ></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <div hidden id="calc{{employee.employeeId}}" class="calc">
+                <h5>General Calculation</h5>
+                <p>Amount - ((Cost of Benefits - Dependents * Cost of Dependents) * Discount) = Total</p>
+                <h5>Annual Calculation</h5>
+                <p>${{employee.annualAmount|number:2}} - ((${{employee.annualCostOfBenefits|number:2}} - {{employee.numberOfDependents}} * $500.00) * {{employee.discountPercentage}}%) = ${{employee.annualTotal|number:2}}</p>
+                <h5>Paycheck Calculation</h5>
+                <p>${{employee.paycheckAmount|number:2}} - ((${{employee.paycheckCostOfBenefits|number:2}} - {{employee.numberOfDependents}} * $500.00) * {{employee.discountPercentage}}%) = ${{employee.paycheckTotal|number:2}}</p>
+  </div>
+        </md-list-item>
+    </md-list>
+    <div layout="row" layout-align="end">
+        <md-button class="md-raised" data-ng-click="go('/employees/add')">Add Employee</md-button>
+    </div>
+</div>
